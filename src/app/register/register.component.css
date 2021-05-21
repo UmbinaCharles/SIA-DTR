@@ -13,30 +13,40 @@ img {
     font-size: 38px;
     color: #787977;
     margin-top: 250px;
-    margin-left: 650px;
-}
-
-#text2 {
-    position: absolute;
-    font-size: 38px;
-    color: #787977;
-    margin-top: 300px;
-    margin-left: 550px;
+    margin-left: 630px;
 }
 
 #inputbox1 {
     position: absolute;
-    margin-top: 400px;
+    margin-top: 350px;
     margin-left: 550px;
 }
 
 #inputbox2 {
     position: absolute;
-    margin-top: 500px;
+    margin-top: 430px;
+    margin-left: 550px;
+}
+
+#inputbox3 {
+    position: absolute;
+    margin-top: 510px;
     margin-left: 550px;
 }
 
 #password {
+    background-color: #EDECDF;
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    border-bottom: 1 #787977;
+    border-width: 3px;
+    width: 450px;
+    height: 30px;
+    font-size: 20px;
+}
+
+#cpassword {
     background-color: #EDECDF;
     border-top: 0;
     border-left: 0;
@@ -74,7 +84,14 @@ img {
     font-size: 27px;
 }
 
-.login {
+#label3 {
+    margin-top: 10px;
+    margin-left: 5px;
+    color: #787977;
+    font-size: 27px;
+}
+
+.reg {
     background-color: #357555;
     color: white;
     width: 460px;
@@ -84,7 +101,7 @@ img {
     font-size: 27px;
 }
 
-#login {
+#reg {
     position: absolute;
     margin-top: 630px;
     margin-left: 550px;

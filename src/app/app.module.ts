@@ -57,7 +57,8 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { TestingComponent } from './testing/testing.component';
 // HTTP
-import { HttpClientModule } from '@angular/common/http'; // HTTP
+import { HttpClientModule } from '@angular/common/http';
+import { RegisterComponent } from './register/register.component'; // HTTP
 @NgModule({
   declarations: [
     AppComponent,
@@ -66,7 +67,8 @@ import { HttpClientModule } from '@angular/common/http'; // HTTP
     LoginComponent,
     HeaderComponent,
     CardpanelComponent,
-    TestingComponent
+    TestingComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
