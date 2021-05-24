@@ -32,14 +32,19 @@
   padding: 8px !important;
   font-size: 26px;
 }
-.div-add-item{
+
+.search-input{
   float: left;
-  padding-left: 20px;
+  padding-left: 10px;
+}
+
+.div-add-item{
+  padding-right: 20px;
   padding-top: 20px;
 }
 
 .div-add-item button{ 
-  float: left;
+  float: right;
   padding: 15px;
   border: none;
   background-color: white;
@@ -47,5 +52,59 @@
   border-radius: 20px;
 }
 .div-add-item button:hover{
-  background-color: transparent;
+  background-color: #EDECDF;
+}
+
+.div-print-item{
+  padding-right: 100px;
+}
+
+.div-print-item button{ 
+  float: right;
+  padding: 15px;
+  border: none;
+  background-color: white;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  border-radius: 20px;
+}
+.div-print-item button:hover{
+  background-color: #EDECDF;
+}
+
+.confirm{
+  padding-left: 200px;
+}
+
+.confirm button{ 
+  float: left;
+  padding: 15px;
+  border: none;
+  background-color: yellowgreen;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  border-radius: 20px;
+}
+.confirm button:hover{
+  background-color: #EDECDF;
+}
+
+.cancel{
+  padding-left: 350px;
+}
+
+.cancel button{ 
+  float: left;
+  padding: 15px;
+  border: none;
+  color: white;
+  background-color: red;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  border-radius: 20px;
+}
+.cancel button:hover{
+  background-color: #EDECDF;
+  color: black;
+}
+
+table {
+  width: 100%;
 }

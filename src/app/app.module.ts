@@ -58,7 +58,10 @@ import { MatTableModule } from '@angular/material/table';
 import { TestingComponent } from './testing/testing.component';
 // HTTP
 import { HttpClientModule } from '@angular/common/http';
-import { RegisterComponent } from './register/register.component'; // HTTP
+import { RegisterComponent } from './register/register.component';
+
+import Swal from 'sweetalert2';
+// HTTP
 @NgModule({
   declarations: [
     AppComponent,
@@ -68,7 +71,7 @@ import { RegisterComponent } from './register/register.component'; // HTTP
     HeaderComponent,
     CardpanelComponent,
     TestingComponent,
-    RegisterComponent
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,

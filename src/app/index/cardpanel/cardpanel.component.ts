@@ -17,7 +17,6 @@ export class CardpanelComponent implements OnInit {
     this.getFood(); // ----- RUNS FUNCTIONS --------
   }
   // GET ----------------------
-
   // GET INGREDIENTS --------------
   getFood(): void{
     this.data.getData('products').subscribe((res)=>{

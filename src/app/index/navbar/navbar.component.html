@@ -1,15 +1,382 @@
 <nav id="nav-sidebar">
-  <div class="div-add-item">
-    <button>Create &nbsp;<i class="fas fa-plus"></i></button>
-  </div>
   <div id="nav-sidebar-list">
-    <a href="" id="sidebar-home" class="nav-item"><span class='icon-field'><i class="fa fa-list"></i></span>&nbsp; Assignment</a>
-    <a href="" id="sidebar-home" class="nav-item"><span class='icon-field'><i class="fa fa-bars"></i></span>&nbsp; Dashboard</a>
-    <a href="" id="sidebar-home" class="nav-item"><span class='icon-field'><i class="fa fa-sort"></i></span>&nbsp; Manage</a>
-    <a href="" id="sidebar-home" class="nav-item"><span class='icon-field'><i class="fa fa-check-square"></i></span>&nbsp; Attendance</a>
-    <a href="" id="sidebar-home" class="nav-item"><span class='icon-field'><i class="fa fa-users"></i></span>&nbsp; Positions</a>
-    <a href="" id="sidebar-home" class="nav-item"><span class='icon-field'><i class="fa fa-user-circle"></i></span>&nbsp; Employees</a>
-    <a href="" id="sidebar-home" class="nav-item"><span class='icon-field'><i class="fa fa-print"></i></span>&nbsp; Printables</a>
-    <a href="" id="sidebar-home" class="nav-item"><span class='icon-field'><i class="fa fa-calendar-check-o"></i></span>&nbsp; Scheadule</a>
+    <a id="sidebar-home" class="nav-item" (click)="openDash()"><span class='icon-field'><i class="fa fa-bars"></i></span>&nbsp; Dashboard</a>
+    <a id="sidebar-home" class="nav-item" (click)="openAtt()"><span class='icon-field'><i class="fa fa-check-square"></i></span>&nbsp; Attendance</a>
+    <a id="sidebar-home" class="nav-item" (click)="openPos()"><span class='icon-field'><i class="fa fa-users"></i></span>&nbsp; Positions</a>
+    <a id="sidebar-home" class="nav-item" (click)="openEmployees()"><span class='icon-field'><i class="fa fa-user-circle"></i></span>&nbsp; Employees</a>
+    <a id="sidebar-home" class="nav-item" (click)="openSched()"><span class='icon-field'><i class="fa fa-calendar-check-o"></i></span>&nbsp; Schedule</a>
   </div>
 </nav>
+
+<div class="card-main" *ngIf="dashboard">
+  <div class="list-label">
+  </div>
+  <div class="div-add-item">
+    <button (click)="openModal()"><i class="fas fa-plus"></i>&nbsp; Add</button>
+  </div>
+  <div class="div-print-item">
+    <button><i class="fas fa-print"></i>&nbsp; Print</button>
+  </div>
+  <div class="search-input">
+    <label for="search"><i class="fas fa-search"></i>&nbsp; <input id="search" name="search" placeholder="search"></label>
+  </div>
+  <div>
+    <table>
+      <tr>
+        <th>No. of employees</th>
+        <th>On Time Today</th>
+        <th>late-today</th>
+        <!-- <th>Ingredients</th> -->
+        <th>Actions</th>
+      </tr>
+      <tr *ngFor="let post of [1,2,3]">
+        <td style="width: 30%">  
+          <div style="float: left; padding-left: 10px">
+            <div class="div-product-td"><p></p></div>
+            <!-- TO DO :: SHOW PRODUCT & INGREDIENTS AND ( UPDATE FUNCTION ) -->
+            <!-- <div class="div-edit-td"> <button class="card-edit-button"><i class="fas fa-edit"></i>&nbsp; Edit</button> </div> -->
+          </div>
+        </td>
+        <td>
+
+        </td>
+        <td>
+
+        </td>
+        <!-- TO DO :: VIEW INGREDIENTS WHERE PRODUCT_ID -->
+        <!-- <td><button class="card-main-button"><i class="fas fa-eye"></i>&nbsp;view</button></td> -->
+        <!-- TODO :: FOR EACH INGREDIENT WHERE PRODUCT ID * IF * AN INGREDIENT HAS 0 QUANTITY AVAILABLE IS = NO -->
+         <!-- TODO :: ARCHIVE PRODUCT  -->
+        <td> 
+          <button class="card-view-button" (click)="openView()"><i class="fas fa-eye"></i>&nbsp;view</button> &nbsp;
+          <button class="card-edit-button" (click)="openEdit()"><i class="fas fa-edit"></i>&nbsp; Edit</button> &nbsp;
+          <button class="card-delete-button" (click)="deleteBtn()"><i class="fas fa-trash-alt"></i>&nbsp; Delete</button> 
+        </td>
+      </tr>
+    </table>
+    <div class="modal" *ngIf="add">
+      <div class="modal-content">
+        <button class="close-modal" (click)="closeModal()"><i class="fas fa-times"></i></button>
+        <h1>Add Data</h1><hr>
+        <label for="numb-employees">Number of Employees:
+          <input type="text" id="numb-employees" name="numb-employees" placeholder="Enter Data">
+        </label> <br><br>
+        <label for="on-time-today">On Time Today:
+          <input type="text" id="on-time-today" name="on-time-today" placeholder="Enter Data">
+        </label> <br><br>
+        <label for="late-today">Number of Employees:
+          <input type="text" id="late-today" name="late-today" placeholder="Enter Data">
+        </label> <br><br>
+        <div class="confirm">
+          <button (click)="closeModal()">Confirm</button>
+        </div>
+        <div class="cancel">
+          <button (click)="closeModal()">Cancel</button>
+        </div>
+      </div>
+    </div>
+    <div class="modal" *ngIf="edit">
+      <div class="modal-content">
+        <button class="close-modal" (click)="closeEdit()"><i class="fas fa-times"></i></button>
+        <h1>ADOBONG BURAT</h1>
+      </div>
+    </div>
+    <div class="modal" *ngIf="view">
+      <div class="modal-content">
+        <button class="close-modal" (click)="closeView()"><i class="fas fa-times"></i></button>
+        <h1>ADOBONG BURAT</h1>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card-main" *ngIf="attendance">
+  <div class="list-label">
+  </div>
+  <div class="div-print-item">
+    <button><i class="fas fa-print"></i>&nbsp; Print</button>
+  </div>
+  <div class="search-input">
+    <label for="search"><i class="fas fa-search"></i>&nbsp; <input id="search" name="search" placeholder="search"></label>
+  </div>
+  <div>
+    <table>
+      <tr>
+        <th>Time In</th>
+        <th>Time Out</th>
+        <!-- <th>Ingredients</th> -->
+        <th>Actions</th>
+      </tr>
+      <tr *ngFor="let post of [1,2,3]">
+        <td style="width: 30%">  
+          <div style="float: left; padding-left: 10px">
+            <div class="div-product-td"><p></p></div>
+            <!-- TO DO :: SHOW PRODUCT & INGREDIENTS AND ( UPDATE FUNCTION ) -->
+            <!-- <div class="div-edit-td"> <button class="card-edit-button"><i class="fas fa-edit"></i>&nbsp; Edit</button> </div> -->
+          </div>
+        </td>
+        <td>
+
+        </td>
+        <!-- TO DO :: VIEW INGREDIENTS WHERE PRODUCT_ID -->
+        <!-- <td><button class="card-main-button"><i class="fas fa-eye"></i>&nbsp;view</button></td> -->
+        <!-- TODO :: FOR EACH INGREDIENT WHERE PRODUCT ID * IF * AN INGREDIENT HAS 0 QUANTITY AVAILABLE IS = NO -->
+         <!-- TODO :: ARCHIVE PRODUCT  -->
+        <td> 
+          <button class="card-view-button" (click)="openView()"><i class="fas fa-eye"></i>&nbsp;view</button> &nbsp;
+          <button class="card-edit-button" (click)="openEdit()"><i class="fas fa-edit"></i>&nbsp; Edit</button> &nbsp;
+          <button class="card-delete-button" (click)="deleteBtn()"><i class="fas fa-trash-alt"></i>&nbsp; Delete</button> 
+        </td>
+      </tr>
+    </table>
+    <div class="modal" *ngIf="edit">
+      <div class="modal-content">
+        <button class="close-modal" (click)="closeEdit()"><i class="fas fa-times"></i></button>
+        <h1>ADOBONG BURAT</h1>
+      </div>
+    </div>
+    <div class="modal" *ngIf="view">
+      <div class="modal-content">
+        <button class="close-modal" (click)="closeView()"><i class="fas fa-times"></i></button>
+        <h1>ADOBONG BURAT</h1>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card-main" *ngIf="positions">
+  <div class="list-label">
+  </div>
+  <div class="div-add-item">
+    <button (click)="openModal()"><i class="fas fa-plus"></i>&nbsp; Add</button>
+  </div>
+  <div class="div-print-item">
+    <button><i class="fas fa-print"></i>&nbsp; Print</button>
+  </div>
+  <div class="search-input">
+    <label for="search"><i class="fas fa-search"></i>&nbsp; <input id="search" name="search" placeholder="search"></label>
+  </div>
+  <div>
+    <table>
+      <tr>
+        <th>Positions List</th>
+        <!-- <th>Ingredients</th> -->
+        <th>Actions</th>
+      </tr>
+      <tr *ngFor="let post of [1,2,3]">
+        <td style="width: 30%">  
+          <div style="float: left; padding-left: 10px">
+            <div class="div-product-td"><p></p></div>
+            <!-- TO DO :: SHOW PRODUCT & INGREDIENTS AND ( UPDATE FUNCTION ) -->
+            <!-- <div class="div-edit-td"> <button class="card-edit-button"><i class="fas fa-edit"></i>&nbsp; Edit</button> </div> -->
+          </div>
+
+        </td>
+        <!-- TO DO :: VIEW INGREDIENTS WHERE PRODUCT_ID -->
+        <!-- <td><button class="card-main-button"><i class="fas fa-eye"></i>&nbsp;view</button></td> -->
+        <!-- TODO :: FOR EACH INGREDIENT WHERE PRODUCT ID * IF * AN INGREDIENT HAS 0 QUANTITY AVAILABLE IS = NO -->
+         <!-- TODO :: ARCHIVE PRODUCT  -->
+        <td> 
+          <button class="card-view-button" (click)="openView()"><i class="fas fa-eye"></i>&nbsp;view</button> &nbsp;
+          <button class="card-edit-button" (click)="openEdit()"><i class="fas fa-edit"></i>&nbsp; Edit</button> &nbsp;
+          <button class="card-delete-button" (click)="deleteBtn()"><i class="fas fa-trash-alt"></i>&nbsp; Delete</button> 
+        </td>
+      </tr>
+    </table>
+    <div class="modal" *ngIf="add">
+      <div class="modal-content">
+        <button class="close-modal" (click)="closeModal()"><i class="fas fa-times"></i></button>
+        <h1>Add Data</h1><hr>
+        <label for="numb-employees">Position Title:
+          <input type="text" id="numb-employees" name="numb-employees" placeholder="Enter Data">
+        </label> <br><br>
+        <div class="confirm">
+          <button (click)="closeModal()">Confirm</button>
+        </div>
+        <div class="cancel">
+          <button (click)="closeModal()">Cancel</button>
+        </div>
+      </div>
+    </div>
+    <div class="modal" *ngIf="edit">
+      <div class="modal-content">
+        <button class="close-modal" (click)="closeEdit()"><i class="fas fa-times"></i></button>
+        <h1>ADOBONG BURAT</h1>
+      </div>
+    </div>
+    <div class="modal" *ngIf="view">
+      <div class="modal-content">
+        <button class="close-modal" (click)="closeView()"><i class="fas fa-times"></i></button>
+        <h1>ADOBONG BURAT</h1>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card-main" *ngIf="employees">
+  <div class="list-label">
+  </div>
+  <div class="div-add-item">
+    <button (click)="openModal()"><i class="fas fa-plus"></i>&nbsp; Add</button>
+  </div>
+  <div class="div-print-item">
+    <button><i class="fas fa-print"></i>&nbsp; Print</button>
+  </div>
+  <div class="search-input">
+    <label for="search"><i class="fas fa-search"></i>&nbsp; <input id="search" name="search" placeholder="search"></label>
+  </div>
+  <div>
+    <table>
+      <tr>
+        <th>Employee Name</th>
+        <th>Employee ID</th>
+        <!-- <th>Ingredients</th> -->
+        <th>Actions</th>
+      </tr>
+      <tr *ngFor="let post of [1,2,3]">
+        <td style="width: 30%">  
+          <div style="float: left; padding-left: 10px">
+            <div class="div-product-td"><p></p></div>
+            <!-- TO DO :: SHOW PRODUCT & INGREDIENTS AND ( UPDATE FUNCTION ) -->
+            <!-- <div class="div-edit-td"> <button class="card-edit-button"><i class="fas fa-edit"></i>&nbsp; Edit</button> </div> -->
+          </div>
+        </td>
+        <td>
+
+        </td>
+        <!-- TO DO :: VIEW INGREDIENTS WHERE PRODUCT_ID -->
+        <!-- <td><button class="card-main-button"><i class="fas fa-eye"></i>&nbsp;view</button></td> -->
+        <!-- TODO :: FOR EACH INGREDIENT WHERE PRODUCT ID * IF * AN INGREDIENT HAS 0 QUANTITY AVAILABLE IS = NO -->
+         <!-- TODO :: ARCHIVE PRODUCT  -->
+        <td> 
+          <button class="card-view-button" (click)="openView()"><i class="fas fa-eye"></i>&nbsp;view</button> &nbsp;
+          <button class="card-edit-button" (click)="openEdit()"><i class="fas fa-edit"></i>&nbsp; Edit</button> &nbsp;
+          <button class="card-delete-button" (click)="deleteBtn()"><i class="fas fa-trash-alt"></i>&nbsp; Delete</button> 
+        </td>
+      </tr>
+    </table>
+    <div class="modal" *ngIf="add">
+      <div class="modal-content">
+        <button class="close-modal" (click)="closeModal()"><i class="fas fa-times"></i></button>
+        <h1>Add Data</h1><hr>
+        <label for="numb-employees">Employee Name:
+          <input type="text" id="numb-employees" name="numb-employees" placeholder="Enter Data">
+        </label> <br><br>
+        <label for="on-time-today">Employee ID:
+          <input type="text" id="on-time-today" name="on-time-today" placeholder="Enter Data">
+        </label> <br><br>
+        <div class="confirm">
+          <button (click)="closeModal()">Confirm</button>
+        </div>
+        <div class="cancel">
+          <button (click)="closeModal()">Cancel</button>
+        </div>
+      </div>
+    </div>
+    <div class="modal" *ngIf="edit">
+      <div class="modal-content">
+        <button class="close-modal" (click)="closeEdit()"><i class="fas fa-times"></i></button>
+        <h1>ADOBONG BURAT</h1>
+      </div>
+    </div>
+    <div class="modal" *ngIf="view">
+      <div class="modal-content">
+        <button class="close-modal" (click)="closeView()"><i class="fas fa-times"></i></button>
+        <h1>ADOBONG BURAT</h1>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card-main" *ngIf="schedule">
+  <div class="list-label">
+  </div>
+  <div class="div-add-item">
+    <button (click)="openModal()"><i class="fas fa-plus"></i>&nbsp; Add</button>
+  </div>
+  <div class="div-print-item">
+    <button><i class="fas fa-print"></i>&nbsp; Print</button>
+  </div>
+  <div class="search-input">
+    <label for="search"><i class="fas fa-search"></i>&nbsp; <input id="search" name="search" placeholder="search"></label>
+  </div>
+  <div>
+    <table>
+      <tr>
+        <th>Time In</th>
+        <th>Time Out</th>
+        <!-- <th>Ingredients</th> -->
+        <th>Actions</th>
+      </tr>
+      <tr *ngFor="let post of [1,2,3]">
+        <td style="width: 30%">  
+          <div style="float: left; padding-left: 10px">
+            <div class="div-product-td"><p></p></div>
+            <!-- TO DO :: SHOW PRODUCT & INGREDIENTS AND ( UPDATE FUNCTION ) -->
+            <!-- <div class="div-edit-td"> <button class="card-edit-button"><i class="fas fa-edit"></i>&nbsp; Edit</button> </div> -->
+          </div>
+        </td>
+        <td>
+
+        </td>
+        <!-- TO DO :: VIEW INGREDIENTS WHERE PRODUCT_ID -->
+        <!-- <td><button class="card-main-button"><i class="fas fa-eye"></i>&nbsp;view</button></td> -->
+        <!-- TODO :: FOR EACH INGREDIENT WHERE PRODUCT ID * IF * AN INGREDIENT HAS 0 QUANTITY AVAILABLE IS = NO -->
+         <!-- TODO :: ARCHIVE PRODUCT  -->
+        <td> 
+          <button class="card-view-button" (click)="openView()"><i class="fas fa-eye"></i>&nbsp;view</button> &nbsp;
+          <button class="card-edit-button" (click)="openEdit()"><i class="fas fa-edit"></i>&nbsp; Edit</button> &nbsp;
+          <button class="card-delete-button" (click)="deleteBtn()"><i class="fas fa-trash-alt"></i>&nbsp; Delete</button> 
+        </td>
+      </tr>
+    </table>
+    <div class="modal" *ngIf="add">
+      <div class="modal-content">
+        <button class="close-modal" (click)="closeModal()"><i class="fas fa-times"></i></button>
+        <h1>Add Data</h1><hr>
+        <label for="numb-employees">Select an Option: &nbsp;</label> 
+        <select id="cars">
+          <option value="time-In">Time In</option>
+          <option value="time-Out">Time Out</option>
+        </select> <br><br>
+        <div class="confirm">
+          <button (click)="closeModal()">Confirm</button>
+        </div>
+        <div class="cancel">
+          <button (click)="closeModal()">Cancel</button>
+        </div>
+      </div>
+    </div>
+    <div class="modal" *ngIf="edit">
+      <div class="modal-content">
+        <button class="close-modal" (click)="closeEdit()"><i class="fas fa-times"></i></button>
+        <h1>ADOBONG BURAT</h1>
+      </div>
+    </div>
+    <div class="modal" *ngIf="view">
+      <div class="modal-content">
+        <button class="close-modal" (click)="closeView()"><i class="fas fa-times"></i></button>
+        <h1>ADOBONG BURAT</h1>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card-main" *ngIf="card">
+  <div class="list-label">
+  </div>
+  <div class="search-input">
+    <label for="search"><i class="fas fa-search"></i>&nbsp; <input id="search" name="search" placeholder="search"></label>
+  </div>
+  <div>
+    <table>
+      <tr>
+        <th>Name</th>
+        <!-- <th>Ingredients</th> -->
+        <th>Available</th>
+        <th>Actions</th>
+      </tr>
+      
+    </table>
+  </div>
+</div>
